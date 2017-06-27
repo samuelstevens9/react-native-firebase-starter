@@ -28,20 +28,30 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      user:null,
       dataSource: new ListView.DataSource({
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
     };
-    this.itemsRef = this.getRef().child('items');
+    //console.log("User",props.user);
+    /*
+    user:{
+      uid:"",
+      email:"",
+      displayName:"",
+      phoneNumber:"",
+      photoURL:"",
+    }
+    */
+    this.itemsRef = this.getRef().child('items').child(props.user.uid);
+    this.itemsQuery = this.itemsRef.orderByChild("title");
   }
 
   getRef() {
     return this.props.firebaseApp.database().ref();
   }
 
-  listenForItems(itemsRef) {
-    itemsRef.on('value', (snap) => {
+  listenForItems(itemsQuery) {
+    itemsQuery.on('value', (snap) => {
 
       // get children as an array
       var items = [];
@@ -60,11 +70,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.listenForItems(this.itemsRef);
+    this.listenForItems(this.itemsQuery);
   }
-  doLogin(user){
-    this.setState({user});
-  }
+  
   render() {
     return (
       <View style={styles.container}>

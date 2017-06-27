@@ -51,7 +51,7 @@ class AutomagicListApp extends Component {
     var logins = (<Welcome firebaseApp={firebaseApp} />)
     if(this.state.user){
       logins = (
-        <App firebaseApp={firebaseApp} />
+        <App firebaseApp={firebaseApp} user={this.state.user} />
       )
     }
     return (

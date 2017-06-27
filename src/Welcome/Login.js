@@ -50,6 +50,7 @@ class Login extends Component {
         <TextInput
         style={styles.simpleInput}
         keyboardType="email-address" placeholder="Email" autoCapitalize="none"
+        autoCorrect={false}
         onChangeText={(email) => this.setState({email})}
         value={this.state.email}
         />

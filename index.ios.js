@@ -39,7 +39,7 @@ class AutomagicListApp extends Component {
   componentDidMount() {
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
-        console.log("onAuthStateChanged user",user);
+        //console.log("onAuthStateChanged user",user);
         this.setState({user});
       }
     });
@@ -51,7 +51,7 @@ class AutomagicListApp extends Component {
     var logins = (<Welcome firebaseApp={firebaseApp} />)
     if(this.state.user){
       logins = (
-        <App firebaseApp={firebaseApp} />
+        <App firebaseApp={firebaseApp} user={this.state.user} />
       )
     }
     return (
