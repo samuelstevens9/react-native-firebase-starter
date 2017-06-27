@@ -1,0 +1,3 @@
+rootProject.name = 'AutomagicListApp'
+
+include ':app'
