@@ -73,7 +73,7 @@ class GroceryList extends Component {
           _key: child.key
         });
       });
-
+      console.log("GroceryList listenForItems setState of items");
       this.setState({
         dataSource: this.state.dataSource.cloneWithRows(items)
       });
@@ -82,6 +82,7 @@ class GroceryList extends Component {
   }
 
   componentDidMount() {
+    console.log("GroceryList componentDidMount");
     //this.props.navigation.setParams({ _addItem: this._addItem });
     this.listenForItems(this.itemsQuery);
   }

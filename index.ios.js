@@ -29,9 +29,11 @@ const {
 } = ReactNative;
 
 const firebaseApp = require('./src/initFirebase.js');
+const Splash = require('./src/App/Splash');
 const TheApp = StackNavigator({
-  Welcome: {screen: Welcome },
+  Splash : {screen: Splash },
   App: { screen: App },
+  Welcome: {screen: Welcome },
 },{ headerMode: 'none' }
 );
 /*
