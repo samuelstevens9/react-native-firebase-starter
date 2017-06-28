@@ -6,60 +6,20 @@
 
 import React, {Component} from 'react';
 import ReactNative from 'react-native';
+import { StackNavigator } from 'react-navigation';
 const firebase = require('firebase');
-//const StatusBar = require('./src/components/StatusBar');
-//const ActionButton = require('./src/components/ActionButton');
-//const ListItem = require('./src/components/ListItem');
-//const Login = require('./src/components/Login')
-const Welcome = require('./src/Welcome/Welcome')
+const firebaseApp = require('./src/initFirebase.js');
+
+const { AppRegistry } = ReactNative;
+
+const Splash = require('./src/App/Splash');
 const App = require('./src/App/App')
-const styles = require('./src/styles.js')
+const Welcome = require('./src/Welcome/Welcome')
 
-const {
-  AppRegistry,
-  ListView,
-  StyleSheet,
-  Text,
-  View,
-  TouchableHighlight,
-  AlertIOS,
-} = ReactNative;
-
-const firebaseApp = require('./src/initFirebase.js')
-
-class AutomagicListApp extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      user:null
-    };
-  }
-
-  componentDidMount() {
-    firebaseApp.auth().onAuthStateChanged((user) => {
-      if (user) {
-        console.log("onAuthStateChanged user",user);
-        this.setState({user});
-      }
-    });
-  }
-  doLogin(user){
-    this.setState({user});
-  }
-  render() {
-    var logins = (<Welcome firebaseApp={firebaseApp} />)
-    if(this.state.user){
-      logins = (
-        <App firebaseApp={firebaseApp} user={this.state.user} />
-      )
-    }
-    return (
-      <View style={styles.container}>
-        {logins}
-      </View>
-    )
-  }
-}
-
-AppRegistry.registerComponent('AutomagicListApp', () => AutomagicListApp);
+const TheApp = StackNavigator({
+  Splash : {screen: Splash },
+  App: { screen: App },
+  Welcome: {screen: Welcome },
+},{ headerMode: 'none' }
+);
+AppRegistry.registerComponent('AutomagicListApp', () => TheApp);
