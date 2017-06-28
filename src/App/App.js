@@ -19,12 +19,13 @@ const {
   View,
   TouchableHighlight,
   AlertIOS,
+  Button,
 } = ReactNative;
 
-//const firebaseApp = require('./src/initFirebase.js')
+const firebaseApp = require('../initFirebase.js')
 
-class App extends Component {
-
+class GroceryList extends Component {
+  
   constructor(props) {
     super(props);
     this.state = {
@@ -32,6 +33,7 @@ class App extends Component {
         rowHasChanged: (row1, row2) => row1 !== row2,
       })
     };
+    const { params } = this.props.navigation.state;
     //console.log("User",props.user);
     /*
     user:{
@@ -42,11 +44,21 @@ class App extends Component {
       photoURL:"",
     }
     */
-    this.itemsRef = this.getRef().child('items').child(props.user.uid);
+    this.itemsRef = this.getRef().child('items').child(params.user.uid);
     this.itemsQuery = this.itemsRef.orderByChild("title");
+    this._addItem = this._addItem.bind(this)
+  }
+  static navigationOptions = ({ navigation }) => {
+    const {state, setParams} = navigation;
+    //navigation.navigate('Chat', { user:  'Lucy' });
+    return {
+      title: 'Grocery List',
+      headerRight: <Button title="Add" onPress={()=> navigation.navigate('AddItem' )} />,
+    };
   }
 
   getRef() {
+    return firebaseApp.database().ref();
     return this.props.firebaseApp.database().ref();
   }
 
@@ -70,14 +82,16 @@ class App extends Component {
   }
 
   componentDidMount() {
+    //this.props.navigation.setParams({ _addItem: this._addItem });
     this.listenForItems(this.itemsQuery);
   }
   
   render() {
     //<ActionButton onPress={this._addItem.bind(this)} title="Add" />
+    //<StatusBar title="Grocery List" />
     return (
       <View style={styles.container}>
-        <StatusBar title="Grocery List" />
+        
         <ListView
           contentInset={{bottom:49}}
           automaticallyAdjustContentInsets={false}
@@ -127,5 +141,13 @@ class App extends Component {
   }
 
 }
+
+import { StackNavigator } from 'react-navigation';
+const AddItem = require("./AddItem");
+const App = StackNavigator({
+  GroceryList: { screen: GroceryList },
+  AddItem: { screen: AddItem },
+}//,{ headerMode: 'none' }
+);
 
 module.exports = App;

@@ -7,7 +7,7 @@
 import React, {Component} from 'react';
 import ReactNative from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-
+import { StackNavigator } from 'react-navigation';
 const firebase = require('firebase');
 //const StatusBar = require('./src/components/StatusBar');
 //const ActionButton = require('./src/components/ActionButton');
@@ -29,7 +29,12 @@ const {
 } = ReactNative;
 
 const firebaseApp = require('./src/initFirebase.js');
-
+const TheApp = StackNavigator({
+  Welcome: {screen: Welcome },
+  App: { screen: App },
+},{ headerMode: 'none' }
+);
+/*
 class AutomagicListApp extends Component {
 
   constructor(props) {
@@ -71,7 +76,7 @@ class AutomagicListApp extends Component {
         </TabBarIOS>
         
       )
-      //logins = (<App firebaseApp={firebaseApp} user={this.state.user} />)
+      logins = TheApp
     }
     return (
       <View style={styles.container}>
@@ -80,5 +85,5 @@ class AutomagicListApp extends Component {
     )
   }
 }
-
-AppRegistry.registerComponent('AutomagicListApp', () => AutomagicListApp);
+*/
+AppRegistry.registerComponent('AutomagicListApp', () => TheApp);
