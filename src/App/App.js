@@ -74,19 +74,19 @@ class App extends Component {
   }
   
   render() {
+    //<ActionButton onPress={this._addItem.bind(this)} title="Add" />
     return (
       <View style={styles.container}>
-
         <StatusBar title="Grocery List" />
         <ListView
-        dataSource={this.state.dataSource}
-        renderRow={this._renderItem.bind(this)}
-        enableEmptySections={true}
-        style={styles.listview}/>
+          contentInset={{bottom:49}}
+          automaticallyAdjustContentInsets={false}
+          dataSource={this.state.dataSource}
+          renderRow={this._renderItem.bind(this)}
+          enableEmptySections={true}
+          style={styles.listview}/>
 
-        <ActionButton onPress={this._addItem.bind(this)} title="Add" />
         
-
       </View>
     )
   }
