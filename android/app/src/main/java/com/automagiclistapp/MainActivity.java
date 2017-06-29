@@ -1,4 +1,4 @@
-package com.automagiclistapp;
+package com.AutomagicListApp;
 
 import com.facebook.react.ReactActivity;
 

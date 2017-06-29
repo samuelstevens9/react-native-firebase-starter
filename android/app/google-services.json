@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "350268015388",
+    "firebase_url": "https://automagic-list.firebaseio.com",
+    "project_id": "automagic-list",
+    "storage_bucket": "automagic-list.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:350268015388:android:704e02258f41e111",
+        "android_client_info": {
+          "package_name": "com.AutomagicListApp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "350268015388-3o7vb9uca6e1u7vhv2ffbvjqleeskn8c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzQJQeD93pLkTWoah4c8rck22QobiTjcE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
