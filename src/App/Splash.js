@@ -17,6 +17,7 @@ class Splash extends Component {
     this.state = {
     };
     const { navigate } = this.props.navigation;
+    console.log(firebaseApp,typeof firebaseApp.auth);
     firebaseApp.auth().onAuthStateChanged((user) => {
       if (user) {
         const resetAction = NavigationActions.reset({
